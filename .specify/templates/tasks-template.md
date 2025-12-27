@@ -8,7 +8,10 @@ description: "Task list template for feature implementation"
 **Input**: Design documents from `/specs/[###-feature-name]/`
 **Prerequisites**: plan.md (required), spec.md (required for user stories), research.md, data-model.md, contracts/
 
-**Tests**: The examples below include test tasks. Tests are OPTIONAL - only include them if explicitly requested in the feature specification.
+**Tests**: Per constitution, tests are MANDATORY and MUST be written first
+for each user story. The examples below include test tasks and MUST be
+adapted to the actual spec. CI MUST fail until tests pass and coverage
+gates are met.
 
 **Organization**: Tasks are grouped by user story to enable independent implementation and testing of each story.
 
@@ -43,6 +46,21 @@ description: "Task list template for feature implementation"
   DO NOT keep these sample tasks in the generated tasks.md file.
   ============================================================================
 -->
+
+## Phase 0: AWS Provisioning (AWS CLI only)
+
+**Purpose**: Provision required AWS resources using AWS CLI BEFORE any implementation
+
+- [ ] P000 Configure AWS CLI credentials and default region
+- [ ] P001 Create IAM role/policy for Lambda (AWS CLI)
+- [ ] P002 Create DynamoDB table for CRUD (AWS CLI)
+- [ ] P003 Create API Gateway REST/HTTP API and resources (AWS CLI)
+- [ ] P004 Create Lambda function (Python 3.10+ or Node.js 20+) and attach role
+- [ ] P005 Integrate API Gateway method with Lambda (AWS CLI)
+- [ ] P006 Output invoke URL and test a sample request via curl
+- [ ] P007 Add cleanup commands (delete-function, delete-table, remove resources)
+
+**Checkpoint**: All resources exist; record commands and outputs in docs/quickstart.md
 
 ## Phase 1: Setup (Shared Infrastructure)
 

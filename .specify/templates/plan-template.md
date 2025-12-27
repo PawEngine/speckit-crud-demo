@@ -31,7 +31,23 @@
 
 *GATE: Must pass before Phase 0 research. Re-check after Phase 1 design.*
 
-[Gates determined based on constitution file]
+**Quality Gates (MANDATORY)**
+- Lint + format + static analysis pass.
+- Tests-first (TDD): failing tests written before implementation.
+- Coverage: unit ≥ 80%, integration ≥ 70% on changed packages.
+- Performance: no >5% regression on critical path benchmarks.
+- Accessibility: no WCAG 2.1 AA violations (for UI changes).
+- Security: no HIGH/CRITICAL dependency issues.
+
+**Platform Constraints (AWS ONLY)**
+- Provisioning MUST be via AWS CLI commands; no Terraform/CFN/CDK/Console.
+- Backend MUST be AWS Lambda (Python 3.10+ or Node.js 20+) with DynamoDB + API Gateway.
+- Provisioning Plan MUST be documented and executed BEFORE implementation.
+- Authentication: out of scope (public access for now).
+
+**Documentation & Scripts**
+- Quickstart MUST be beginner-friendly and include AWS CLI prerequisites.
+- Provisioning and operations scripts MUST be runnable as `sh` with Japanese comments.
 
 ## Project Structure
 
