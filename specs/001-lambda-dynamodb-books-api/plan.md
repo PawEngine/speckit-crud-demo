@@ -49,7 +49,7 @@ AWS CLIのみでプロビジョニングし、Lambda(Python) + DynamoDB + API Ga
 - Quickstart MUST be beginner-friendly and include AWS CLI prerequisites.
 - Provisioning and operations scripts MUST be runnable as `sh` with Japanese comments.
 
-Compliance: 本計画はCLIファースト、テスト/UX/性能/品質ゲートを満たす構成で進める。
+Compliance: 本計画はCLIファースト、テスト/UX/性能/品質ゲートを満たす構成で進める。2025-12-27に仕様・計画・タスクの整合を再確認（T014）。
 
 ## Project Structure
 
@@ -64,6 +64,25 @@ specs/001-lambda-dynamodb-books-api/
 ├── contracts/           # Phase 1 output (/speckit.plan command)
 └── tasks.md             # Phase 2 output (/speckit.tasks command - NOT created by /speckit.plan)
 ```
+
+## Performance Smoke Tests
+
+目標（p95）: Create/Read One < 1s、Read All(100件) < 2s。
+簡易計測は `curl -w` を使用:
+
+```sh
+API_BASE=$(cat .api_base_url)
+
+curl -s -o /dev/null -w 'POST %{{time_total}}s\n' -X POST "$API_BASE/books" \
+  -H 'Content-Type: application/json' \
+  -d '{"title":"perf","author":"test","status":"未読"}'
+
+curl -s -o /dev/null -w 'GET one %{{time_total}}s\n' "$API_BASE/books/$BOOK_ID"
+
+curl -s -o /dev/null -w 'GET all %{{time_total}}s\n' "$API_BASE/books"
+```
+
+閾値超過時はロギング/スキャン条件見直し、メモリ/タイムアウト調整（`30_lambda.sh`の`--memory-size`/`--timeout`）を検討。
 
 ### Source Code (repository root)
 <!--

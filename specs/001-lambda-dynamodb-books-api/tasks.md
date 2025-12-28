@@ -22,15 +22,15 @@ description: "Tasks for Lambda+DynamoDB 書籍管理API（Create/Read）"
 
 **Purpose**: Provision required AWS resources using AWS CLI BEFORE any implementation
 
-- [ ] T001 Create env script in scripts/aws/00_env.sh
-- [ ] T002 [P] Write DynamoDB create script in scripts/aws/10_dynamodb.sh
-- [ ] T003 [P] Add IAM trust policy in iam/policies/lambda-trust-policy.json
-- [ ] T004 [P] Add IAM DynamoDB policy in iam/policies/lambda-dynamodb-policy.json
-- [ ] T005 Create IAM setup script in scripts/aws/20_iam.sh
-- [ ] T006 Create Lambda deploy script in scripts/aws/30_lambda.sh
-- [ ] T007 Create API Gateway script in scripts/aws/40_apigw.sh
-- [ ] T008 Create cleanup script in scripts/aws/90_cleanup.sh
-- [ ] T009 [P] Document copy-paste steps in specs/001-lambda-dynamodb-books-api/quickstart.md
+ - [X] T001 Create env script in scripts/aws/00_env.sh
+ - [X] T002 [P] Write DynamoDB create script in scripts/aws/10_dynamodb.sh
+ - [X] T003 [P] Add IAM trust policy in iam/policies/lambda-trust-policy.json
+ - [X] T004 [P] Add IAM DynamoDB policy in iam/policies/lambda-dynamodb-policy.json
+ - [X] T005 Create IAM setup script in scripts/aws/20_iam.sh
+ - [X] T006 Create Lambda deploy script in scripts/aws/30_lambda.sh
+ - [X] T007 Create API Gateway script in scripts/aws/40_apigw.sh
+ - [X] T008 Create cleanup script in scripts/aws/90_cleanup.sh
+ - [X] T009 [P] Document copy-paste steps in specs/001-lambda-dynamodb-books-api/quickstart.md
 
 **Checkpoint**: All scripts exist with Japanese comments and are idempotent
 
@@ -40,11 +40,11 @@ description: "Tasks for Lambda+DynamoDB 書籍管理API（Create/Read）"
 
 **Purpose**: Core infrastructure scaffolding required by all user stories
 
-- [ ] T010 Ensure OpenAPI contract covers POST/GET in specs/001-lambda-dynamodb-books-api/contracts/openapi.yaml
-- [ ] T011 [P] Create handler module in src/lambda/books_handler.py
-- [ ] T012 Add logging and structured JSON responses in src/lambda/books_handler.py
-- [ ] T013 [P] Add basic error handling for DynamoDB operations in src/lambda/books_handler.py
-- [ ] T014 Validate plan.md consistency with constitution in specs/001-lambda-dynamodb-books-api/plan.md
+ - [X] T010 Ensure OpenAPI contract covers POST/GET in specs/001-lambda-dynamodb-books-api/contracts/openapi.yaml
+ - [X] T011 [P] Create handler module in src/lambda/books_handler.py
+ - [X] T012 Add logging and structured JSON responses in src/lambda/books_handler.py
+ - [X] T013 [P] Add basic error handling for DynamoDB operations in src/lambda/books_handler.py
+ - [X] T014 Validate plan.md consistency with constitution in specs/001-lambda-dynamodb-books-api/plan.md
 
 **⚠️ CRITICAL**: Complete before any user story tasks
 
@@ -58,15 +58,15 @@ description: "Tasks for Lambda+DynamoDB 書籍管理API（Create/Read）"
 
 ### Tests for User Story 1 (MANDATORY)
 
-- [ ] T020 [P] [US1] Add contract test script tests/contract/us1_post_books.sh
-- [ ] T021 [P] [US1] Add integration test script tests/integration/us1_create_and_get.sh
+ - [X] T020 [P] [US1] Add contract test script tests/contract/us1_post_books.sh
+ - [X] T021 [P] [US1] Add integration test script tests/integration/us1_create_and_get.sh
 
 ### Implementation for User Story 1
 
-- [ ] T022 [P] [US1] Implement POST /books path in src/lambda/books_handler.py
-- [ ] T023 [US1] Validate input and return 400 on errors in src/lambda/books_handler.py
-- [ ] T024 [US1] DynamoDB PutItem with fields in src/lambda/books_handler.py
-- [ ] T025 [US1] Update quickstart with US1 curl in specs/001-lambda-dynamodb-books-api/quickstart.md
+ - [X] T022 [P] [US1] Implement POST /books path in src/lambda/books_handler.py
+ - [X] T023 [US1] Validate input and return 400 on errors in src/lambda/books_handler.py
+ - [X] T024 [US1] DynamoDB PutItem with fields in src/lambda/books_handler.py
+ - [X] T025 [US1] Update quickstart with US1 curl in specs/001-lambda-dynamodb-books-api/quickstart.md
 
 **Checkpoint**: POST /books independently functional and testable
 
@@ -80,13 +80,13 @@ description: "Tasks for Lambda+DynamoDB 書籍管理API（Create/Read）"
 
 ### Tests for User Story 2 (MANDATORY)
 
-- [ ] T030 [P] [US2] Add contract test script tests/contract/us2_get_book.sh
+ - [X] T030 [P] [US2] Add contract test script tests/contract/us2_get_book.sh
 
 ### Implementation for User Story 2
 
-- [ ] T031 [P] [US2] Implement GET /books/{bookId} in src/lambda/books_handler.py
-- [ ] T032 [US2] Map DynamoDB item to API JSON fields in src/lambda/books_handler.py
-- [ ] T033 [US2] Return 404 JSON when not found in src/lambda/books_handler.py
+ - [X] T031 [P] [US2] Implement GET /books/{bookId} in src/lambda/books_handler.py
+ - [X] T032 [US2] Map DynamoDB item to API JSON fields in src/lambda/books_handler.py
+ - [X] T033 [US2] Return 404 JSON when not found in src/lambda/books_handler.py
 
 **Checkpoint**: GET /books/{bookId} independently functional and testable
 
@@ -100,13 +100,13 @@ description: "Tasks for Lambda+DynamoDB 書籍管理API（Create/Read）"
 
 ### Tests for User Story 3 (MANDATORY)
 
-- [ ] T040 [P] [US3] Add contract test script tests/contract/us3_list_books.sh
+ - [X] T040 [P] [US3] Add contract test script tests/contract/us3_list_books.sh
 
 ### Implementation for User Story 3
 
-- [ ] T041 [P] [US3] Implement GET /books in src/lambda/books_handler.py
-- [ ] T042 [US3] Support limit and lastEvaluatedKey in src/lambda/books_handler.py
-- [ ] T043 [US3] Return items/count and optional lastEvaluatedKey in src/lambda/books_handler.py
+ - [X] T041 [P] [US3] Implement GET /books in src/lambda/books_handler.py
+ - [X] T042 [US3] Support limit and lastEvaluatedKey in src/lambda/books_handler.py
+ - [X] T043 [US3] Return items/count and optional lastEvaluatedKey in src/lambda/books_handler.py
 
 **Checkpoint**: Read All independently functional and testable
 
@@ -117,9 +117,10 @@ description: "Tasks for Lambda+DynamoDB 書籍管理API（Create/Read）"
 **Purpose**: Improvements that affect multiple user stories
 
 - [ ] T090 [P] Add docs for cleanup & rollback in specs/001-lambda-dynamodb-books-api/quickstart.md
-- [ ] T091 Add performance smoke test notes in specs/001-lambda-dynamodb-books-api/plan.md
-- [ ] T092 [P] Refactor handler into smaller functions in src/lambda/books_handler.py
-- [ ] T093 Security: verify IAM policy minimum-privilege in iam/policies/lambda-dynamodb-policy.json
+ - [X] T091 Add performance smoke test notes in specs/001-lambda-dynamodb-books-api/plan.md
+ - [X] T092 [P] Refactor handler into smaller functions in src/lambda/books_handler.py
+ - [X] T093 Security: verify IAM policy minimum-privilege in iam/policies/lambda-dynamodb-policy.json
+ - [X] T090 [P] Add docs for cleanup & rollback in specs/001-lambda-dynamodb-books-api/quickstart.md
 
 ---
 

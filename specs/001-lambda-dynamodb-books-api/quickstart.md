@@ -170,3 +170,28 @@ aws iam delete-policy --policy-arn "arn:aws:iam::${ACCOUNT_ID}:policy/BooksApiDy
 aws iam delete-role --role-name BooksApiRole
 aws dynamodb delete-table --table-name "$TABLE_NAME" --region "$AWS_REGION"
 ```
+
+---
+
+## 7. スクリプトでの一括実行（推奨）
+
+```sh
+# プロビジョニング
+sh scripts/aws/10_dynamodb.sh
+sh scripts/aws/20_iam.sh
+sh scripts/aws/30_lambda.sh
+sh scripts/aws/40_apigw.sh   # .api_base_url にベースURLを書き出します
+
+# 契約/統合テスト（jq が必要）
+sh tests/contract/us1_post_books.sh
+sh tests/integration/us1_create_and_get.sh
+sh tests/contract/us2_get_book.sh
+sh tests/contract/us3_list_books.sh
+
+# ロールバック/クリーンアップ
+sh scripts/aws/90_cleanup.sh
+```
+
+Notes:
+- `scripts/aws/20_iam.sh` は最小権限（対象テーブルのARNを限定）でIAMポリシーを生成し、既存ポリシーがある場合は新バージョンを既定化します。
+- `scripts/aws/40_apigw.sh` は既存APIの再利用・デプロイを行い、` .api_base_url` を出力します。
