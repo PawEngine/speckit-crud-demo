@@ -6,8 +6,9 @@ ROLE_ARN="$(cat .role_arn)"
 ZIP=.build/lambda.zip
 mkdir -p .build
 
-# パッケージ作成（src/lambda配下をzip）
-zip -r "$ZIP" src/lambda -x "*.pyc" "__pycache__/*" >/dev/null
+# パッケージ作成（books_handler.py をzipのルートに配置）
+rm -f "$ZIP" || true
+zip -j "$ZIP" src/lambda/books_handler.py >/dev/null
 
 if aws lambda get-function --function-name "$FUNCTION_NAME" --region "$AWS_REGION" >/dev/null 2>&1; then
   echo "[INFO] Updating lambda code..."
@@ -16,8 +17,8 @@ if aws lambda get-function --function-name "$FUNCTION_NAME" --region "$AWS_REGIO
     --function-name "$FUNCTION_NAME" \
     --runtime python3.11 \
     --role "$ROLE_ARN" \
-    --handler lambda/books_handler.lambda_handler \
-    --environment Variables="TABLE_NAME=$TABLE_NAME" \
+    --handler books_handler.lambda_handler \
+    --environment "Variables={TABLE_NAME=$TABLE_NAME}" \
     --timeout 10 --memory-size 256 \
     --region "$AWS_REGION" >/dev/null
 else
@@ -26,9 +27,9 @@ else
     --function-name "$FUNCTION_NAME" \
     --runtime python3.11 \
     --role "$ROLE_ARN" \
-    --handler lambda/books_handler.lambda_handler \
+    --handler books_handler.lambda_handler \
     --zip-file fileb://"$ZIP" \
-    --environment Variables="TABLE_NAME=$TABLE_NAME" \
+    --environment "Variables={TABLE_NAME=$TABLE_NAME}" \
     --timeout 10 --memory-size 256 \
     --region "$AWS_REGION"
 fi

@@ -48,7 +48,7 @@ create_or_put_method() {
   if aws apigateway get-method --rest-api-id "$API_ID" --resource-id "$RES_ID" --http-method "$HTTP_METHOD" --region "$AWS_REGION" >/dev/null 2>&1; then
     echo "[INFO] Method $HTTP_METHOD exists on $RES_ID"
   else
-    aws apigateway put-method --rest-api-id "$API_ID" --resource-id "$RES_ID" --http-method "$HTTP_METHOD" --authorization-type "NONE" --api-key-required false --region "$AWS_REGION" >/dev/null
+    aws apigateway put-method --rest-api-id "$API_ID" --resource-id "$RES_ID" --http-method "$HTTP_METHOD" --authorization-type "NONE" --no-api-key-required --region "$AWS_REGION" >/dev/null
   fi
   # 統合（Lambda プロキシ）
   aws apigateway put-integration \
