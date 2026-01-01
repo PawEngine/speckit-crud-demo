@@ -1,0 +1,89 @@
+openapi: 3.0.3
+info:
+  title: Books API
+  version: 0.1.0
+servers:
+  - url: https://{restId}.execute-api.{region}.amazonaws.com/{stage}
+    variables:
+      restId:
+        default: REST_ID
+      region:
+        default: ap-northeast-1
+      stage:
+        default: v1
+paths:
+  /books:
+    post:
+      summary: Create a new book
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/BookCreate'
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  bookId:
+                    type: string
+        '400': { description: Validation Error }
+    get:
+      summary: List books
+      parameters:
+        - name: limit
+          in: query
+          schema: { type: integer, minimum: 1, maximum: 100, default: 100 }
+        - name: lastEvaluatedKey
+          in: query
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  items:
+                    type: array
+                    items: { $ref: '#/components/schemas/Book' }
+                  count: { type: integer }
+                  lastEvaluatedKey: { type: string, nullable: true }
+  /books/{bookId}:
+    get:
+      summary: Get a book by ID
+      parameters:
+        - name: bookId
+          in: path
+          required: true
+          schema: { type: string }
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema: { $ref: '#/components/schemas/Book' }
+        '404': { description: Not Found }
+components:
+  schemas:
+    BookCreate:
+      type: object
+      required: [title, author]
+      properties:
+        title: { type: string }
+        author: { type: string }
+        publishedDate: { type: string, format: date }
+        status: { type: string, enum: [未読, 読了] }
+    Book:
+      allOf:
+        - $ref: '#/components/schemas/BookCreate'
+        - type: object
+          required: [bookId, title, author, status]
+          properties:
+            bookId: { type: string }
+            status: { type: string, enum: [未読, 読了] }
