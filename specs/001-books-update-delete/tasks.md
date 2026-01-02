@@ -34,16 +34,16 @@ Checkpoint: Foundational 完了後、ユーザーストーリーへ進行。
 **Independent Test**: PUT → GET で更新内容の反映を確認（存在しないIDは404）。
 
 ### Tests for User Story 1（TDD）
-- [ ] T010 [P] [US1] 契約テストスクリプトを追加（`tests/contract/us4_update_book.sh`）
-- [ ] T011 [P] [US1] 統合テストスクリプトを追加（`tests/integration/us4_update_flow.sh`）
+- [X] T010 [P] [US1] 契約テストスクリプトを追加（`tests/contract/us4_update_book.sh`）
+- [X] T011 [P] [US1] 統合テストスクリプトを追加（`tests/integration/us4_update_flow.sh`）
 
 ### Implementation for User Story 1
-- [ ] T012 [US1] Lambda ハンドラへ PUT ルート追加（`src/lambda/books_handler.py`）
-- [ ] T013 [US1] 入力検証（空文字/不正 status）実装（`src/lambda/books_handler.py`）
-- [ ] T014 [US1] 既存レコードの取得と404応答（`src/lambda/books_handler.py`）
-- [ ] T015 [US1] 部分更新ロジック実装（`src/lambda/books_handler.py`）
-- [ ] T016 [US1] 更新結果の JSON 応答（`src/lambda/books_handler.py`）
-- [ ] T017 [US1] Lambda コードのデプロイ（`aws lambda update-function-code`）
+- [X] T012 [US1] Lambda ハンドラへ PUT ルート追加（`src/lambda/books_handler.py`）
+- [X] T013 [US1] 入力検証（空文字/不正 status）実装（`src/lambda/books_handler.py`）
+- [X] T014 [US1] 既存レコードの取得と404応答（`src/lambda/books_handler.py`）
+- [X] T015 [US1] 部分更新ロジック実装（`src/lambda/books_handler.py`）
+- [X] T016 [US1] 更新結果の JSON 応答（`src/lambda/books_handler.py`）
+- [X] T017 [US1] Lambda コードのデプロイ（`aws lambda update-function-code`）
 - [ ] T018 [P] [US1] API Gateway に PUT メソッド追加（`aws apigateway put-method`）
 - [ ] T019 [P] [US1] PUT 統合（Lambda Proxy）追加（`aws apigateway put-integration`）
 - [ ] T020 [US1] デプロイ（`aws apigateway create-deployment`）
@@ -59,14 +59,14 @@ Checkpoint: US1 単独で完全機能・独立検証可。
 **Independent Test**: DELETE → GET が 404 を返すことを確認。
 
 ### Tests for User Story 2（TDD）
-- [ ] T022 [P] [US2] 契約テストスクリプトを追加（`tests/contract/us5_delete_book.sh`）
-- [ ] T023 [P] [US2] 統合テストスクリプトを追加（`tests/integration/us5_delete_flow.sh`）
+- [X] T022 [P] [US2] 契約テストスクリプトを追加（`tests/contract/us5_delete_book.sh`）
+- [X] T023 [P] [US2] 統合テストスクリプトを追加（`tests/integration/us5_delete_flow.sh`）
 
 ### Implementation for User Story 2
-- [ ] T024 [US2] Lambda ハンドラへ DELETE ルート追加（`src/lambda/books_handler.py`）
-- [ ] T025 [US2] 既存確認と404応答（`src/lambda/books_handler.py`）
-- [ ] T026 [US2] 削除ロジックと JSON 応答（`src/lambda/books_handler.py`）
-- [ ] T027 [US2] Lambda コードのデプロイ（`aws lambda update-function-code`）
+- [X] T024 [US2] Lambda ハンドラへ DELETE ルート追加（`src/lambda/books_handler.py`）
+- [X] T025 [US2] 既存確認と404応答（`src/lambda/books_handler.py`）
+- [X] T026 [US2] 削除ロジックと JSON 応答（`src/lambda/books_handler.py`）
+- [X] T027 [US2] Lambda コードのデプロイ（`aws lambda update-function-code`）
 - [ ] T028 [P] [US2] API Gateway に DELETE メソッド追加（`aws apigateway put-method`）
 - [ ] T029 [P] [US2] DELETE 統合（Lambda Proxy）追加（`aws apigateway put-integration`）
 - [ ] T030 [US2] デプロイ（`aws apigateway create-deployment`）

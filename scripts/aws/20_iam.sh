@@ -21,7 +21,7 @@ cat > .build/lambda-dynamodb-policy.json <<JSON
   "Statement": [
     {
       "Effect": "Allow",
-      "Action": ["dynamodb:PutItem","dynamodb:GetItem","dynamodb:Scan"],
+      "Action": ["dynamodb:PutItem","dynamodb:GetItem","dynamodb:Scan","dynamodb:DeleteItem"],
       "Resource": "${TABLE_ARN}"
     },
     {
