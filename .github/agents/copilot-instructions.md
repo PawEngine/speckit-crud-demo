@@ -23,6 +23,7 @@ tests/
 : Follow standard conventions
 
 ## Recent Changes
+- 001-books-update-delete: Added [if applicable, e.g., PostgreSQL, CoreData, files or N/A]
 
 - 001-lambda-dynamodb-books-api: Added
 

@@ -20,3 +20,8 @@ build/
 # IDE/Editor
 .vscode/
 .idea/
+
+# Runtime artifacts (do not commit)
+.api_base_url
+.api_id
+.role_arn
